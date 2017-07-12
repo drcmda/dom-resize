@@ -16,8 +16,8 @@ const target = document.getElementById("target")
 
 // Subscribe to resize event
 resizeListen(target, () => {
-  console.log("resized!");
-  console.log(target.offsetWidth);
+  console.log("resized!")
+  console.log(target.offsetWidth)
 });
 
 // Unsubscribe event
