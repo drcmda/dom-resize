@@ -1,91 +1,77 @@
-function resizeListener(e) {
-  var win = e.target || e.srcElement
-  if (win.__resizeRAF__) {
-    cancelAnimationFrame(win.__resizeRAF__)
-  }
-  win.__resizeRAF__ = requestAnimationFrame(function () {
-    var trigger = win.__resizeTrigger__
-    trigger && trigger.__resizeListeners__.forEach(function (fn) {
-      fn.call(trigger, e)
+'use strict'
+
+Object.defineProperty(exports, '__esModule', {
+    value: true,
+})
+function resizeListener(el) {
+    var win = el.target || el.srcElement
+    win._dRRaf && cancelAnimationFrame(win._dRRaf)
+    win._dRRaf = requestAnimationFrame(function() {
+        return (
+            win._dRTrigger &&
+            win._dRTrigger._dRListeners.forEach(function(fn) {
+                return fn.call(win._dRTrigger, el)
+            })
+        )
     })
-  })
 }
 
-var exports = function exports(element, fn) {
-  var window = this
-  var document = window.document
-  var isIE
+function listen(el, fn) {
+    var window = this
+    var document = window.document
+    var attachEvent = document.attachEvent
 
-  var attachEvent = document.attachEvent
-  if (typeof navigator !== 'undefined') {
-    isIE = navigator.userAgent.match(/Trident/) ||
-      navigator.userAgent.match(/Edge/)
-  }
-
-  function objectLoad() {
-    this.contentDocument.defaultView.__resizeTrigger__ = this.__resizeElement__
-    this.contentDocument.defaultView.addEventListener('resize', resizeListener)
-  }
-
-  if (!element.__resizeListeners__) {
-    element.__resizeListeners__ = []
-    if (attachEvent) {
-      element.__resizeTrigger__ = element
-      element.attachEvent('onresize', resizeListener)
-    } else {
-      if (getComputedStyle(element).position === 'static') {
-        element.style.setProperty('position', 'relative', 'important')
-      }
-      var obj = (element.__resizeTrigger__ = document.createElement('object'))
-      obj.setAttribute(
-        'style',
-        'display: block !important; position: absolute !important; top: 0 !important; left: 0 !important; height: 100% !important; width: 100% !important; overflow: hidden !important; pointer-events: none !important; z-index: -1 !important; opacity: 0 !important;'
-      )
-      obj.setAttribute('class', 'resize-sensor')
-
-      // prevent <object> from stealing keyboard focus
-      obj.setAttribute('tabindex', '-1');
-
-      obj.__resizeElement__ = element
-      obj.onload = objectLoad
-      obj.type = 'text/html'
-      if (isIE) {
-        element.appendChild(obj)
-      }
-      obj.data = 'about:blank'
-      if (!isIE) {
-        element.appendChild(obj)
-      }
+    var isIE = void 0
+    if (typeof navigator !== 'undefined') {
+        isIE = navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/Edge/)
     }
-  }
-  element.__resizeListeners__.push(fn)
-}
 
-module.exports = typeof window === 'undefined' ? exports : exports.bind(window)
+    if (!el._dRListeners) {
+        el._dRListeners = []
+        if (attachEvent) {
+            el._dRTrigger = el
+            el.attachEvent('onresize', resizeListener)
+        } else {
+            getComputedStyle(el).position === 'static' && el.style.setProperty('position', 'relative', 'important')
+            var obj = (el._dRTrigger = document.createElement('object'))
+            obj.setAttribute(
+                'style',
+                'display: block !important; position: absolute !important; top: 0 !important; left: 0 !important; height: 100% !important; width: 100% !important; overflow: hidden !important; pointer-events: none !important; z-index: -1 !important; opacity: 0 !important;',
+            )
+            obj.setAttribute('class', 'resize-sensor')
+            obj.setAttribute('tabindex', '-1')
 
-module.exports.unbind = function (element, fn) {
-  var attachEvent = document.attachEvent
-  if (fn) {
-    element.__resizeListeners__.splice(
-      element.__resizeListeners__.indexOf(fn),
-      1
-    )
-  } else {
-    element.__resizeListeners__ = []
-  }
-  if (!element.__resizeListeners__.length) {
-    if (attachEvent) {
-      element.detachEvent('onresize', resizeListener)
-    } else {
-      element.__resizeTrigger__.contentDocument.defaultView.removeEventListener(
-        'resize',
-        resizeListener
-      )
-      delete element.__resizeTrigger__.contentDocument.defaultView.__resizeTrigger__
-      element.__resizeTrigger__ = !element.removeChild(
-        element.__resizeTrigger__
-      )
+            obj._dRElement = el
+            obj.onload = function() {
+                this.contentDocument.defaultView._dRTrigger = this._dRElement
+                this.contentDocument.defaultView.addEventListener('resize', resizeListener)
+            }
+            obj.type = 'text/html'
+            isIE && el.appendChild(obj)
+            obj.data = 'about:blank'
+            !isIE && el.appendChild(obj)
+        }
     }
-    delete element.__resizeListeners__
-  }
+    el._dRListeners.push(fn)
 }
+
+function resizeUnlisten(el, fn) {
+    el._dRListeners = fn
+        ? el._dRListeners.filter(function(f) {
+              return f != fn
+          })
+        : []
+    if (!el._dRListeners.length) {
+        if (document.attachEvent) {
+            el.detachEvent('onresize', resizeListener)
+        } else {
+            el._dRTrigger.contentDocument.defaultView.removeEventListener('resize', resizeListener)
+            delete el._dRTrigger.contentDocument.defaultView._dRTrigger
+            el._dRTrigger = !el.removeChild(el._dRTrigger)
+        }
+        delete el._dRListeners
+    }
+}
+
+exports.resizeListen = typeof window === 'undefined' ? listen : listen.bind(window)
+exports.resizeUnlisten = resizeUnlisten

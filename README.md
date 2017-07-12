@@ -1,10 +1,6 @@
-element-resize-event
-==================
-
 Library to make it easy to listen for element resize events
 
-Code borrowed from a [blog post by
-backalleycoder.com](http://www.backalleycoder.com/2013/03/18/cross-browser-event-based-element-resize-detection/).
+Forked from: https://github.com/KyleAMathews/element-resize-event
 
 ## Install
 `npm install element-resize-event`
@@ -14,19 +10,16 @@ This library depends on the availability of `requestAnimationFrame` and `cancelA
 
 ## Usage
 ```javascript
-var elementResizeEvent = require('element-resize-event');
+import { resizeListen, resizeUnlisten } from 'dom-resize'
 
-var element = document.getElementById("resize");
+const target = document.getElementById("target")
 
-elementResizeEvent(element, function() {
+// Subscribe to resize event
+resizeListen(target, () => {
   console.log("resized!");
-  console.log(element.offsetWidth);
+  console.log(target.offsetWidth);
 });
-```
 
-### Unbinding The Event Listener
-```javascript
-var unbind = require('element-resize-event').unbind;
-
-unbind(element);
+// Unsubscribe event
+resizeUnlisten(target)
 ```

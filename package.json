@@ -1,18 +1,15 @@
 {
-  "name": "element-resize-event",
+  "name": "dom-resize",
   "description": "Polyfill to make it easy to listen for element resize events",
-  "version": "3.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "1.0.0",
+  "author": [
+    "Kyle Mathews <mathews.kyle@gmail.com>",
+    "Paul Henschel <drcmda@gmail.com>",
+  ],
   "bugs": {
-    "url": "https://github.com/KyleAMathews/element-resize-event/issues"
+    "url": "https://github.com/drcmda/dom-resize/issues"
   },
-  "devDependencies": {
-    "browserify": "^8.1.3",
-    "eslint": "^2.10.2",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.0"
-  },
-  "homepage": "https://github.com/KyleAMathews/element-resize-event",
+  "homepage": "https://github.com/drcmda/dom-resize",
   "keywords": [
     "event",
     "resize",
@@ -23,7 +20,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KyleAMathews/element-resize-event.git"
+    "url": "https://github.com/drcmda/dom-resize.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
