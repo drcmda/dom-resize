@@ -5,7 +5,7 @@ function resizeListener(e) {
   }
   win.__resizeRAF__ = requestAnimationFrame(function () {
     var trigger = win.__resizeTrigger__
-    trigger.__resizeListeners__.forEach(function (fn) {
+    trigger && trigger.__resizeListeners__.forEach(function (fn) {
       fn.call(trigger, e)
     })
   })
