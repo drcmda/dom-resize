@@ -3,7 +3,7 @@ Library to make it easy to listen for element resize events
 Forked from: https://github.com/KyleAMathews/element-resize-event
 
 ## Install
-`npm install element-resize-event`
+`npm install dom-resize`
 
 ## Dependencies
 This library depends on the availability of `requestAnimationFrame` and `cancelAnimationFrame`

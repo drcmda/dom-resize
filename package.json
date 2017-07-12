@@ -1,7 +1,7 @@
 {
   "name": "dom-resize",
   "description": "Polyfill to make it easy to listen for element resize events",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": [
     "Kyle Mathews <mathews.kyle@gmail.com>",
     "Paul Henschel <drcmda@gmail.com>"
