@@ -1,8 +1,7 @@
 'use strict'
 
-Object.defineProperty(exports, '__esModule', {
-    value: true,
-})
+Object.defineProperty(exports, '__esModule', { value: true })
+
 function resizeListener(el) {
     var win = el.target || el.srcElement
     win._dRRaf && cancelAnimationFrame(win._dRRaf)
@@ -36,7 +35,7 @@ function listen(el, fn) {
             var obj = (el._dRTrigger = document.createElement('object'))
             obj.setAttribute(
                 'style',
-                'display: block !important; position: absolute !important; top: 0 !important; left: 0 !important; height: 100% !important; width: 100% !important; overflow: hidden !important; pointer-events: none !important; z-index: -1 !important; opacity: 0 !important;',
+                'display: block !important; position: absolute !important; top: 0 !important; left: 0 !important; height: 100% !important; width: 100% !important; overflow: hidden !important; pointer-events: none !important; z-index: -1 !important; opacity: 0 !important;'
             )
             obj.setAttribute('class', 'resize-sensor')
             obj.setAttribute('tabindex', '-1')

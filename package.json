@@ -1,10 +1,10 @@
 {
   "name": "dom-resize",
   "description": "Polyfill to make it easy to listen for element resize events",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": [
     "Kyle Mathews <mathews.kyle@gmail.com>",
-    "Paul Henschel <drcmda@gmail.com>",
+    "Paul Henschel <drcmda@gmail.com>"
   ],
   "bugs": {
     "url": "https://github.com/drcmda/dom-resize/issues"
