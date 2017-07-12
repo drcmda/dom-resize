@@ -12,11 +12,11 @@ This library depends on the availability of `requestAnimationFrame` and `cancelA
 ```javascript
 import { resizeListen, resizeUnlisten } from 'dom-resize'
 
-const target = document.getElementById("target")
+const target = document.getElementById('target')
 
 // Subscribe to resize event
 resizeListen(target, () => {
-  console.log("resized!")
+  console.log('resized!')
   console.log(target.offsetWidth)
 });
 
